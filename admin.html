@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Manage Products</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f7f3;
+      padding: 20px;
+    }
+    h2 {
+      color: #5a381e;
+    }
+    .login-box, .admin-panel {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, textarea {
+      padding: 8px;
+      margin: 5px 0 15px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .product-img {
+      height: 60px;
+    }
+    button {
+      background-color: #d9b88c;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .product-table th, .product-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="text" id="adminUser" placeholder="Username" />
+    <input type="password" id="adminPass" placeholder="Password" />
+    <button onclick="checkLogin()">Login</button>
+  </div>
+
+  <div class="admin-panel hidden" id="adminPanel">
+    <h2>Manage Products</h2>
+
+    <label>Product Name:</label>
+    <input type="text" id="productName" />
+
+    <label>Category:</label>
+    <select id="productCategory">
+      <option value="Chandelier">Chandelier</option>
+      <option value="chairs">Chairs</option>
+      <option value="glasses">Glasses</option>
+      <option value="sofas">Sofas</option>
+    </select>
+
+    <label>Description:</label>
+    <textarea id="productDescription"></textarea>
+
+    <label>Stock Quantity:</label>
+    <input type="number" id="productStock" />
+
+    <label>Image URL (optional):</label>
+    <input type="text" id="productURL" />
+
+    <label>OR Upload Image:</label>
+    <input type="file" id="productFile" accept="image/*" />
+
+    <button onclick="addProduct()">Add Product</button>
+
+    <table class="product-table" id="productTable">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBdc9bb0RPse6OU-IvIFZjr1GEewkGeeFM",
+  authDomain: "antique-store-8b471.firebaseapp.com",
+  projectId: "antique-store-8b471",
+  storageBucket: "antique-store-8b471.firebasestorage.app",
+  messagingSenderId: "1068030939579",
+  appId: "1:1068030939579:web:dd6550ac170051177c749e",
+  measurementId: "G-2S08RZSD66"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+  </script>
+
+  <script>
+    function checkLogin() {
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
+      if (user === "admin" && pass === "1234") {
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+      } else {
+        alert("Invalid login");
+      }
+    }
+
+    async function addProduct() {
+      const name = document.getElementById("productName").value;
+      const category = document.getElementById("productCategory").value;
+      const description = document.getElementById("productDescription").value;
+      const stock = parseInt(document.getElementById("productStock").value);
+      const file = document.getElementById("productFile").files[0];
+      const urlInput = document.getElementById("productURL").value;
+
+      if (!name || !description || !category || !stock) {
+        alert("Please fill all required fields.");
+        return;
+      }
+
+      let imageURL = "";
+
+      // Prefer file upload over URL
+      if (file) {
+        const storageRef = storage.ref("products/" + file.name);
+        const snapshot = await storageRef.put(file);
+        imageURL = await snapshot.ref.getDownloadURL();
+      } else if (urlInput) {
+        imageURL = urlInput;
+      } else {
+        alert("Please provide an image URL or upload a file.");
+        return;
+      }
+
+      // Save to Firestore
+      await db.collection("products").add({
+        name,
+        category,
+        description,
+        stock,
+        image: imageURL
+      });
+
+      alert("Product added successfully!");
+
+      // Clear form
+      document.getElementById("productName").value = "";
+      document.getElementById("productCategory").selectedIndex = 0;
+      document.getElementById("productDescription").value = "";
+      document.getElementById("productStock").value = "";
+      document.getElementById("productURL").value = "";
+      document.getElementById("productFile").value = "";
+    }
+
+    function deleteProduct(btn) {
+      const row = btn.parentNode.parentNode;
+      row.remove();
+    }
+
+    function updateStock(input) {
+      const newStock = input.value;
+      if (newStock < 0) {
+        alert("Stock can't be negative");
+        input.value = 0;
+      }
+    }
+	
+	window.onload = function () {
+  alert("Use as example\nUsername: admin\nPassword: 1234");
+};
+
+  </script>
+</body>
+</html>
