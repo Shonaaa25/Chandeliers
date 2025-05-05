@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandeliers & More - Home</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Header navigation -->
+  <header class="main-header">
+    <h1>Chandeliers & More</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="information.html">Information</a>
+	  <a href="admin.html">log in</a>
+    </nav>
+  </header>
+
+  <!-- Search bar -->
+  <div class="search-container">
+    <input type="text" placeholder="Search for chandeliers..." id="searchInput">
+    <button onclick="alert('Search not functional yet')">Search</button>
+  </div>
+
+  <!-- Image slideshow -->
+  <section class="slideshow">
+    <button class="slide-btn left" onclick="changeSlide(-1)">❮</button>
+    <img src="https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618855463.jpg?raw=true" class="slide-image" id="slideImage">
+    <button class="slide-btn right" onclick="changeSlide(1)">❯</button>
+  </section>
+
+  <!-- About the store -->
+  <section class="about">
+    <h2>Welcome to Chandeliers & More</h2>
+    <p>
+      We specialize in luxury antique and modern chandeliers, bringing timeless elegance and style to your home or business.
+      From handcrafted crystal to minimalist contemporary pieces, we take pride in our exquisite lighting collections.
+      Based in South Africa, we aim to deliver exceptional customer service and quality products across the country.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-info">
+      <p><strong>Address:</strong> 45 Antique Lane, Johannesburg, SA</p>
+      <p><strong>Contact:</strong> +27 11 123 4567 | chandeliers@luxuryshop.co.za</p>
+    </div>
+    <div class="social-icons">
+      <a href="https://facebook.com"><img src="https://github.com/Shonaaa25/Icons/blob/main/facebook.png"></a>
+      <a href="https://instagram.com"><img src="https://github.com/Shonaaa25/Icons/blob/main/instagram.png"></a>
+    </div>
+  </footer>
+
+  <script>
+    const slides = [
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618855463.jpg?raw=true",
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618893884.jpg?raw=true",
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618896485.jpg?raw=true"
+    ];
+    let currentSlide = 0;
+
+    function changeSlide(step) {
+      currentSlide = (currentSlide + step + slides.length) % slides.length;
+      document.getElementById("slideImage").src = slides[currentSlide];
+    }
+  </script>
+
+</body>
+</html>
