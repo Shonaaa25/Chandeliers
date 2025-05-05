@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandeliers & More - Gallery</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .category-container {
+      margin: 40px auto;
+      max-width: 1000px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background-color: #fff8f2;
+    }
+    .slideshow-container {
+      position: relative;
+      text-align: center;
+    }
+    .category-slide {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      z-index: 1;
+    }
+    .left { left: 10px; }
+    .right { right: 10px; }
+    .category-info {
+      padding: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header navigation -->
+<header class="main-header">
+  <h1>Chandeliers & More</h1>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="information.html">Information</a>
+    <a href="admin.html">log in</a>
+  </nav>
+</header>
+
+<!-- Search bar -->
+<div class="search-container">
+  <input type="text" placeholder="Search the gallery..." id="searchInput">
+  <button onclick="alert('Search not functional yet')">Search</button>
+</div>
+
+<!-- Category 1: Crystal Chandeliers -->
+<div class="category-container">
+  <h2>Crystal Chandeliers</h2>
+  <div class="slideshow-container" id="crystal-container">
+    <button class="slide-btn left" onclick="changeCategorySlide('crystal', -1)">❮</button>
+    <img class="category-slide" id="crystal-slide" src="">
+    <button class="slide-btn right" onclick="changeCategorySlide('crystal', 1)">❯</button>
+  </div>
+  <div class="category-info">
+    <p>Elegant and luxurious, our crystal chandeliers are perfect for formal dining rooms and entryways. Handcrafted and timeless, they bring sophistication to any space.</p>
+  </div>
+</div>
+
+<!-- Category 2: Modern Chandeliers -->
+<div class="category-container">
+  <h2>Modern Chandeliers</h2>
+  <div class="slideshow-container" id="modern-container">
+    <button class="slide-btn left" onclick="changeCategorySlide('modern', -1)">❮</button>
+    <img class="category-slide" id="modern-slide" src="">
+    <button class="slide-btn right" onclick="changeCategorySlide('modern', 1)">❯</button>
+  </div>
+  <div class="category-info">
+    <p>Featuring clean lines and bold forms, our modern chandeliers blend art and lighting in one stunning package. Ideal for trendy homes and commercial spaces.</p>
+  </div>
+</div>
+
+<!-- Category 3: Vintage Chandeliers -->
+<div class="category-container">
+  <h2>Vintage Chandeliers</h2>
+  <div class="slideshow-container" id="vintage-container">
+    <button class="slide-btn left" onclick="changeCategorySlide('vintage', -1)">❮</button>
+    <img class="category-slide" id="vintage-slide" src="">
+    <button class="slide-btn right" onclick="changeCategorySlide('vintage', 1)">❯</button>
+  </div>
+  <div class="category-info">
+    <p>Step back in time with our handpicked vintage pieces, full of character and rich history. These chandeliers make a bold statement in any classic interior.</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-info">
+    <p><strong>Address:</strong> 45 Antique Lane, Johannesburg, SA</p>
+    <p><strong>Contact:</strong> +27 11 123 4567 | chandeliers@luxuryshop.co.za</p>
+  </div>
+  <div class="social-icons">
+    <a href="https://facebook.com"><img src="https://github.com/Shonaaa25/Icons/blob/main/facebook.png"></a>
+    <a href="https://instagram.com"><img src="https://github.com/Shonaaa25/Icons/blob/main/instagram.png"></a>
+  </div>
+</footer>
+
+<script>
+  const slidesData = {
+    crystal: [
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618855463.jpg?raw=true",
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618893884.jpg?raw=true"
+    ],
+    modern: [
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618896485.jpg?raw=true",
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618898411.jpg?raw=true"
+    ],
+    vintage: [
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618899443.jpg?raw=true",
+      "https://github.com/Shonaaa25/Chandeliers/blob/main/FB_IMG_1729618901453.jpg?raw=true"
+    ]
+  };
+
+  const currentSlides = {
+    crystal: 0,
+    modern: 0,
+    vintage: 0
+  };
+
+  function changeCategorySlide(category, step) {
+    const total = slidesData[category].length;
+    currentSlides[category] = (currentSlides[category] + step + total) % total;
+    document.getElementById(`${category}-slide`).src = slidesData[category][currentSlides[category]];
+  }
+
+  // Load initial images
+  window.onload = () => {
+    Object.keys(slidesData).forEach(cat => {
+      document.getElementById(`${cat}-slide`).src = slidesData[cat][0];
+    });
+  };
+</script>
+
+</body>
+</html>
