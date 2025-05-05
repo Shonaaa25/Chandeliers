@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chandeliers & More - Information</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .info-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff8f2;
+      border-radius: 15px;
+      border: 1px solid #ddd;
+    }
+
+    .info-section h2 {
+      margin-top: 0;
+    }
+
+    .newsletter-popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      z-index: 999;
+      display: none;
+    }
+
+    .newsletter-popup input {
+      padding: 8px;
+      margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .newsletter-popup button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e0bfa4;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .newsletter-popup .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header navigation -->
+<header class="main-header">
+  <h1>Chandeliers & More</h1>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="information.html">Information</a>
+    <a href="admin.html">log in</a>
+  </nav>
+</header>
+
+<!-- Information Section -->
+<section class="info-section">
+  <h2>Our Services</h2>
+  <p>We offer high-end chandelier sales, professional installation, cleaning, restoration, and antique sourcing services. Whether you're decorating a home or a commercial space, our experts are here to guide you.</p>
+
+  <h2>Contact Details</h2>
+  <p><strong>Email:</strong> chandeliers@luxuryshop.co.za</p>
+  <p><strong>Phone:</strong> +27 11 123 4567</p>
+  <p><strong>Address:</strong> 45 Antique Lane, Johannesburg, South Africa</p>
+
+  <h2>Our Locations</h2>
+  <ul>
+    <li>Johannesburg - Main Branch</li>
+    <li>Cape Town - Showroom</li>
+    <li>Durban - Pickup Point</li>
+    <li>Pretoria - Appointment Only</li>
+  </ul>
+</section>
+
+<!-- Newsletter Popup -->
+<div class="newsletter-popup" id="newsletterPopup">
+  <button class="close-btn" onclick="closePopup()">×</button>
+  <h3>Subscribe to Our Newsletter</h3>
+  <p>Be the first to know about our newest chandeliers, discounts, and news.</p>
+  <input type="email" placeholder="Enter your email" id="emailInput">
+  <button onclick="subscribe()">Subscribe</button>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-info">
+    <p><strong>Address:</strong> 45 Antique Lane, Johannesburg, SA</p>
+    <p><strong>Contact:</strong> +27 11 123 4567 | chandeliers@luxuryshop.co.za</p>
+  </div>
+  <div class="social-icons">
+    <a href="https://facebook.com"><img src="https://github.com/Shonaaa25/Icons/blob/main/facebook.png"></a>
+    <a href="https://instagram.com"><img src="https://github.com/Shonaaa25/Icons/blob/main/instagram.png"></a>
+  </div>
+</footer>
+
+<script>
+  // Show popup after a short delay
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById("newsletterPopup").style.display = "block";
+    }, 3000);
+  };
+
+  function closePopup() {
+    document.getElementById("newsletterPopup").style.display = "none";
+  }
+
+  function subscribe() {
+    const email = document.getElementById("emailInput").value;
+    if (email) {
+      alert("Thanks for subscribing, " + email + "!");
+      closePopup();
+    } else {
+      alert("Please enter a valid email address.");
+    }
+  }
+</script>
+
+</body>
+</html>
+
