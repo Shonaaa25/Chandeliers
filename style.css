@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fffdf8;
+  color: #333;
+}
+
+header {
+  background-color: #f5e6cc;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.intro, .info, .admin, .products {
+  padding: 2rem;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.product, .category {
+  margin: 1rem auto;
+  padding: 1rem;
+  max-width: 400px;
+  background-color: #fff7e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+h1, h2, h3 {
+  color: #5a381e;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #5a381e;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fffdf8;
+  color: #333;
+}
+
+.main-header {
+  background-color: #f5e6cc;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-header h1 {
+  margin: 0;
+  color: #5a381e;
+}
+
+.nav-links {
+  margin-top: 10px;
+}
+
+.nav-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #5a381e;
+  font-weight: bold;
+}
+
+.search-container {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fff7e6;
+}
+
+.search-container input {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.search-container button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #d9b88c;
+  border: none;
+  cursor: pointer;
+}
+
+.slideshow {
+  position: relative;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.slide-image {
+  width: 90%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #5a381e;
+  padding: 0 1rem;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.about {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fff8ee;
+}
+
+.about h2 {
+  color: #5a381e;
+}
+
+.footer {
+  background-color: #5a381e;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.footer-info p {
+  margin: 0.5rem 0;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
